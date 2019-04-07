@@ -9,11 +9,11 @@ exclude:
   - "/vendor/"
 
 # Site settings
-title: antiline's tech blog
+title: Junheong Park
 subtitle: ""
 email: antiline@jun2.org
 name: Junheong Park
-description: "antiline's tech blog"
+description: "Junheong Park's tech blog"
 # Base URL of site (i.e. /blog). It should always start with a slash,
 # and never end with a slash. Set it to a blank value if hosting at the
 # root of your server.

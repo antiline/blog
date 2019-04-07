@@ -1,4 +1,4 @@
-# Antiline's Tech Blog
+# Junheong Park's tech blog
 
 # Run local
 ```bash
