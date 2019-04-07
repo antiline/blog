@@ -9,11 +9,11 @@ exclude:
   - "/vendor/"
 
 # Site settings
-title: Antiline
-subtitle: "A simple yet classy theme for your Jekyll website or blog"
+title: antiline's tech blog
+subtitle: ""
 email: antiline@jun2.org
 name: Junheong Park
-description: .
+description: "antiline's tech blog"
 # Base URL of site (i.e. /blog). It should always start with a slash,
 # and never end with a slash. Set it to a blank value if hosting at the
 # root of your server.
