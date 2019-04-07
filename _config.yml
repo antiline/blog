@@ -19,7 +19,7 @@ description: .
 # root of your server.
 baseurl: "" # the subpath of your site, e.g. /blog/
 url: "https://blog.jun2.org" # the base hostname & protocol for your site
-cover: "/assets/header_image.jpg"
+cover: ""
 logo: "/assets/logo.png"
 
 # Build settings
