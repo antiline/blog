@@ -52,17 +52,11 @@ tags: [https, naver, blog, custom-domain]
         ![](/assets/posts/how-to-enable-https-on-a-naver-blog-having-custom-domain/149e262d-a467-46a3-a931-085e6a2e50ce.png)
 
 6. CloudFlare에 캐시 설정을 한다.
-    - Caching → Page Rules 에 규칙을 Bypass 로 추가한다.
+    - Page Rules → Page Rules 에 규칙을 Bypass 로 추가한다.
 
         CloudFlare 가 해당 도메인의 모든 페이지를 캐싱하지 않도록 하자. 그래야 글 변경 시 바로바로 반영된다. 개인도메인의 모든 하위 URL(*) 을 Bypass 로 지정한다.
 
         ![](/assets/posts/how-to-enable-https-on-a-naver-blog-having-custom-domain/a3631d95-d982-4192-94f2-56a06e5c9460.png)
-
-    - Caching → Browser Cache Expiration을 Respect Existing Headers로 변경한다.
-
-        CloudFlare 가 브라우저에 응답시 캐시 제어를 Origin 서버의 값을 전달 하도록 하자. 위에서 진행했던 Bypass 지정을 하면 일반적으로 페이지 캐싱을 하지 않고 항상 Origin 에 요청하고 그대로 응답한다. 그런데 CloudFlare도 그렇게 동작하는지 확인해보지 않아서 Browser Cache Expiration 을 추가 설정한다.
-
-        ![](/assets/posts/how-to-enable-https-on-a-naver-blog-having-custom-domain/bfb324d9-c0ff-40fb-8aa5-f4cddbfe9366.png)
 
 7. 설정은 끝났다. 적용에 시간이 걸릴 수 있으니 조금 기다렸다가 개인 도메인으로 접속해보자. 그러면 멋진 초록색 SSL 인증 마크를 볼 수 있다.
 
