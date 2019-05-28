@@ -11,6 +11,7 @@ tags: [https, naver, blog, custom-domain]
 ## 그러면 네이버 블로그를 사용하면서 개인도메인을 연결하면서 무료로 HTTPS 를 사용할 수 는 없을까?
 
 [CloudFlare][cloud-flare] 를 사용하면 가능하다. CloudFlare 는 요즘 급성장하고 있는 CDN 회사이다. 수익구조가 매우 궁금한데, 무료로 CDN 을 제공하고 있다. CDN 뿐만 아니라 무료로 DNS 및 SSL 인증서도 발급 및 적용해 주고 있어 사이트 통합 관리가 편하다.
+[CloudFlare][cloud-flare] 를 사용하면 가능하다. CloudFlare 는 요즘 급성장하고 있는 CDN 회사이다. 수익구조가 매우 궁금한데, 무료로 CDN 을 제공하고 있다. CDN 뿐만 아니라 무료로 DNS 및 SSL 인증서도 발급 및 적용해 주고 있어 사이트 통합 관리가 편하다.
 
 ### 간단하게 정리하면
 
