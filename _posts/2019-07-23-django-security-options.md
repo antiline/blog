@@ -5,52 +5,11 @@ categories: development
 tags: [django, security]
 ---
 
+django 2.2 를 기준으로 설정하면 좋은 보안 옵션들에 대해 정리한다. 
+내용을 보기 전에 [Security in Django][security-in-django] 와 [System check framework][system-check-framework] 를 읽어보면 좋다.
+
 ### TL;DR
-```python
-MIDDLEWARE = [
-    'django.middleware.security.SecurityMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
-    'corsheaders.middleware.CorsMiddleware',
-    'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
-]
-
-ALLOWED_HOSTS = ['exmaple.com']
-
-SECURE_SSL_REDIRECT = True
-SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-
-SECURE_HSTS_SECONDS = 31536000  # 365 * 24 * 60 * 60
-SECURE_HSTS_PRELOAD = True
-SECURE_HSTS_INCLUDE_SUBDOMAINS = Ture
-
-SECURE_CONTENT_TYPE_NOSNIFF = True
-SECURE_BROWSER_XSS_FILTER = True
-
-CSP_DEFAULT_SRC = ("'self'")
-
-CORS_ORIGIN_ALLOW_ALL = False
-CORS_ORIGIN_WHITELIST = ['sub.example.com']
-CORS_URLS_REGEX = r'^/api/.*$'
-
-CORS_ALLOW_CREDENTIALS = True 
-
-CSRF_TRUSTED_ORIGINS = CORS_ORIGIN_WHITELIST
-
-SESSION_COOKIE_HTTPONLY = True
-CSRF_COOKIE_HTTPONLY = True
-SESSION_COOKIE_SECURE = True
-CSRF_COOKIE_SECURE = True
-CSRF_COOKIE_SAMESITE = 'Lax'
-SESSION_COOKIE_SAMESITE = 'Lax'
-```
-
-## 들어가기 전에
-- django 2.2 를 기준으로 설명한다.
-- [Security in Django][security-in-django] 와 [System check framework][system-check-framework] 를 읽어보면 좋다.
+- 전체 설정은 맨 아래에 있다.
 
 
 ## HOST
@@ -95,6 +54,7 @@ SECURE_HSTS_INCLUDE_SUBDOMAINS = Ture
 
 `Strict-Transport-Security "max-age=31536000; includeSubdomains; preload"` 를 응답한다. 
 이렇게 설정하면 브라우저가 HTTPS 연결이 아닌 경우에 접근을 차단한다. 사이트 오픈 후 적용한다면 `SECURE_HSTS_SECONDS`의 시간을 60초 정도로 작게 해서 테스트를 하고 서서히 늘려가면 좋다.
+개발 환경에서는 인증서 문제가 있을 수 있기 때문에 개발 편의상 프로덕션 환경에만 적용하는것이 좋다.(쉽지 않지만, 개발환경에서도 올바른 인증서를 사용한다면 더욱 좋다.)
 
 
 ## X-Content-Type-Options
@@ -191,6 +151,51 @@ CSRF_TRUSTED_ORIGINS = CORS_ORIGIN_WHITELIST
 ```
 
 가능한 조합이 매우 많다. `CSP_DEFAULT_SRC = ("'self'")` 으로 설정하고 하나씩 정책을 변경해 가면서 적용하면 좋다.
+
+
+---------------------------------------------
+## settings/production.py
+```python
+MIDDLEWARE = [
+    'django.middleware.security.SecurityMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
+    'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django.contrib.messages.middleware.MessageMiddleware',
+    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+]
+
+ALLOWED_HOSTS = ['exmaple.com']
+
+SECURE_SSL_REDIRECT = True
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+SECURE_HSTS_SECONDS = 31536000  # 365 * 24 * 60 * 60
+SECURE_HSTS_PRELOAD = True
+SECURE_HSTS_INCLUDE_SUBDOMAINS = Ture
+
+SECURE_CONTENT_TYPE_NOSNIFF = True
+SECURE_BROWSER_XSS_FILTER = True
+
+CSP_DEFAULT_SRC = ("'self'")
+
+CORS_ORIGIN_ALLOW_ALL = False
+CORS_ORIGIN_WHITELIST = ['sub.example.com']
+CORS_URLS_REGEX = r'^/api/.*$'
+
+CORS_ALLOW_CREDENTIALS = True 
+
+CSRF_TRUSTED_ORIGINS = CORS_ORIGIN_WHITELIST
+
+SESSION_COOKIE_HTTPONLY = True
+CSRF_COOKIE_HTTPONLY = True
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
+CSRF_COOKIE_SAMESITE = 'Lax'
+SESSION_COOKIE_SAMESITE = 'Lax'
+```
 
 
 [security-in-django]: https://docs.djangoproject.com/en/2.2/topics/security/
