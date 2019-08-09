@@ -112,7 +112,7 @@ Secure를 설정하면 HTTPS 프로토콜에서만 브라우저가 서버로 쿠
 SESSION_COOKIE_SAMESITE = 'Lax'
 CSRF_COOKIE_SAMESITE = 'Lax'
 ```
-기본값이 Lax이기 때문에 세팅하지 않아도 된다.
+기본값이 `Lax`이기 때문에 세팅하지 않아도 된다.
 
 `Strict`이 더 좋은 옵션으로 보일 수 있지만 대부분의 경우는 그렇지 않다. 
 `Strict`은 `cross-site`의 `top-level navigations`을 [지원][rfc6265-4.1.2.7]하지 않는다. 
@@ -146,8 +146,8 @@ CSRF_TRUSTED_ORIGINS = CORS_ORIGIN_WHITELIST
 - django-csp 라이브러리를 사용한다.
 - https://django-csp.readthedocs.io/en/latest/
 
-```
-`CSP_DEFAULT_SRC = ("'self'")`
+```python
+CSP_DEFAULT_SRC = ("'self'")
 ```
 
 가능한 조합이 매우 많다. `CSP_DEFAULT_SRC = ("'self'")` 으로 설정하고 하나씩 정책을 변경해 가면서 적용하면 좋다.
@@ -165,6 +165,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'csp.middleware.CSPMiddleware',
 ]
 
 ALLOWED_HOSTS = ['exmaple.com']
